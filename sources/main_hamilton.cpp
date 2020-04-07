@@ -12,6 +12,9 @@
 
 int main(int argc, char const *argv[])
 {
-  std::cout << "Hello Wolrd" << '\n';
+  std::cout << "\n\n\n\t\t-----INICIO PROGRAMA-----\n\n" << std::endl;
+  std::cout << "Hello Wolrd Hamiltoniano" << std::endl;
+  std::cout << "\n\n\t\t----PROGRAMA FINALIZADO----\n" << std::endl;
+
   return 0;
 }
