@@ -12,7 +12,9 @@ install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 
 script:
-  - g++ sources/main.cpp -std=c++17 -o t3
-  - ./t3
+  - g++ sources/main_convexo.cpp -std=c++17 -o convexo
+  - g++ sources/main_hamilton.cpp -std=c++17 -o hamilton
+  - ./convexo
+  - ./hamilton
 
   # - ./t3 < sources/test.txt
