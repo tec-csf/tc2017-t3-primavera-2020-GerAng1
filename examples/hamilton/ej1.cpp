@@ -1,25 +1,19 @@
 #include <algorithm> // std::find
 #include <iostream> // cin y cout
-#include <cstdlib> // rand() y srand()
-#include <fstream> // archivos
-#include <string> // substr()
-#include <cstdio> // printf()
-#include <ctime> // clock() y time() [para rands]
-#include <stack>
 #include <vector>
 
 #include "../../sources/Graph.hpp"
 
-Vertex<std::string, int> * busca(const Graph<std::string, int>& mapa, const int &num_nodes, Vertex<std::string, int> * &v_curso, std::vector< Vertex<std::string, int> * >& yaesta)
+
+template <class V, class E>
+Vertex<V, E> * busca(const Graph<V, E>& mapa, const int &num_nodes, Vertex<V, E> * &v_curso, std::vector< Vertex<V, E> * >& yaesta, int j)
 {
-    Vertex<std::string, int> * mejor_vertice;
-    Edge<int, Vertex<std::string, int>> * mejor_edge;
-
-    mejor_edge = v_curso->minEdge(yaesta);
-    mejor_vertice = mejor_edge->getTarget();
-    yaesta.push_back(mejor_vertice);
-
-    return mejor_vertice;
+    if (j < num_nodes)
+    {
+      auto mejor_vertice = v_curso->minEdge(yaesta, num_nodes)->getTarget();
+      yaesta.push_back(mejor_vertice);
+      return mejor_vertice;
+    }
 }
 
 int main(int argc, char const *argv[])
@@ -64,16 +58,23 @@ int main(int argc, char const *argv[])
     Vertex<std::string, int> * v_curso = nodes[0];
     yaesta.push_back(v_curso);
 
-    std::cout << "Camino a tomar: ";
+    std::cout << "Camino a tomar: " << std::endl;
 
     for (int j = 0; j <= nodes.size(); ++j)
     {
-      std::cout << " , " << v_curso->getInfo();
-      v_curso = busca(mapa, num_nodes, v_curso, yaesta);
+      std::cout << v_curso->getInfo() << std::endl;
+      v_curso = busca(mapa, num_nodes, v_curso, yaesta, j);
 
     }
 
-    std::cout << std::endl;
+    char ans;
+    std::cout << "¿Ver grafo? [Y/N]: ";
+    std::cin >> ans;
+
+    if (ans == 'Y' || ans == 'y')
+    {
+      std::cout << mapa << std::endl;
+    }
 
     std::cout << "\n\n\t\t----PROGRAMA CICLO HAMILTONIANO FINALIZADO----\n" << std::endl;
 
