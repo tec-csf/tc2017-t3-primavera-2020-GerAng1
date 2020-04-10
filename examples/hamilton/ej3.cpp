@@ -41,13 +41,13 @@ int main(int argc, char const *argv[])
     mapa.addVertex(V5);
 
     /* Adicionar aristas */
-    mapa.addEdge(V0, V1, 20);
-    mapa.addEdge(V0, V2, 10);
-    mapa.addEdge(V0, V5, 40);
+    mapa.addEdge(V4, V1, 10);
+    mapa.addEdge(V4, V2, 20);
+    mapa.addEdge(V4, V5, 40);
     mapa.addEdge(V1, V3, 40);
     mapa.addEdge(V1, V5, 30);
-    mapa.addEdge(V2, V4, 30);
-    mapa.addEdge(V3, V4, 20);
+    mapa.addEdge(V2, V0, 30);
+    mapa.addEdge(V3, V0, 20);
     mapa.addEdge(V3, V5, 50);
 
     std::vector< Vertex<std::string, int> * > nodes = mapa.getNodes();

@@ -20,7 +20,7 @@ Vertex<V, E> * busca(const int &num_nodes, Vertex<V, E> * &v_curso, std::vector<
 
 int main(int argc, char const *argv[])
 {
-    std::cout << "\n\n\n\t\t-----INICIO PROGRAMA CICLO HAMILTONIANO-----\n\n" << std::endl;
+    std::cout << "\n\n\t\t-----INICIO PROGRAMA CICLO HAMILTONIANO-----\n\n" << std::endl;
 
     Graph<std::string, int> mapa("Ejemplo 1");
 
@@ -67,7 +67,12 @@ int main(int argc, char const *argv[])
     {
       std::cout << v_curso->getInfo() << std::endl;
       v_curso = busca(num_nodes, v_curso, yaesta, costos, j);
-
+      if(v_curso == nodes[0] && yaesta.size() != num_nodes + 1)
+      {
+        std::cout << v_curso->getInfo() << std::endl;
+        std::cout << "No se cumplió un circuito Hamiltoniano." << std::endl;
+        break;
+      }
     }
 
     std::cout << "Coste total: ";

@@ -90,7 +90,7 @@ Edge<V, E> * Vertex<V, E>::minEdge(std::vector< Vertex<std::string, int> * > &ya
         {
           min = edges[i];
           break;
-        } else if ((edges[i]->getTarget() == yaesta[0]) && (yaesta.size() == num_nodes))
+        } else if ((edges[i]->getTarget() == yaesta[0]))
         {
           min = edges[i];
         }

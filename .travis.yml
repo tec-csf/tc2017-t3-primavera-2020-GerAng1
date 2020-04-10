@@ -12,10 +12,14 @@ install:
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 
 script:
-  - clear
-  - g++ examples/hamilton/ej1.cpp -std=c++17 -o hamilton
+  - g++ examples/hamilton/ej1.cpp -std=c++17 -o h1
+  - g++ examples/hamilton/ej2.cpp -std=c++17 -o h2
+  - g++ examples/hamilton/ej3.cpp -std=c++17 -o h3
   - g++ examples/convexo/main_convexo.cpp -std=c++17 -o convexo
-  - ./hamilton < examples/hamilton/ans.txt
+  - clear
+  - ./h1 < examples/hamilton/ans.txt
+  - ./h2 < examples/hamilton/ans.txt
+  - ./h3 < examples/hamilton/ans.txt
   - ./convexo
 
   # - ./t3 < examples/hamilton/ans.txt
