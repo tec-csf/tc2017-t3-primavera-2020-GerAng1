@@ -6,11 +6,13 @@
 
 
 template <class V, class E>
-Vertex<V, E> * busca(const Graph<V, E>& mapa, const int &num_nodes, Vertex<V, E> * &v_curso, std::vector< Vertex<V, E> * >& yaesta, int j)
+Vertex<V, E> * busca(const int &num_nodes, Vertex<V, E> * &v_curso, std::vector< Vertex<V, E> * >& yaesta, std::vector<int>& costos, int j)
 {
     if (j < num_nodes)
     {
-      auto mejor_vertice = v_curso->minEdge(yaesta, num_nodes)->getTarget();
+      auto mejor_edge = v_curso->minEdge(yaesta, num_nodes);
+      costos.push_back(mejor_edge->getInfo());
+      auto mejor_vertice = mejor_edge->getTarget();
       yaesta.push_back(mejor_vertice);
       return mejor_vertice;
     }
@@ -54,6 +56,7 @@ int main(int argc, char const *argv[])
     std::cout << "Nodos en grafo: " << num_nodes << std::endl;
 
     std::vector< Vertex<std::string, int> * > yaesta;
+    std::vector<int> costos;
 
     Vertex<std::string, int> * v_curso = nodes[0];
     yaesta.push_back(v_curso);
@@ -63,9 +66,22 @@ int main(int argc, char const *argv[])
     for (int j = 0; j <= nodes.size(); ++j)
     {
       std::cout << v_curso->getInfo() << std::endl;
-      v_curso = busca(mapa, num_nodes, v_curso, yaesta, j);
+      v_curso = busca(num_nodes, v_curso, yaesta, costos, j);
 
     }
+
+    std::cout << "Coste total: ";
+    int total = 0;
+
+    for (int i = 0; i < costos.size(); ++i)
+    {
+      if (i == 0) { std::cout << costos[i]; }
+      else { std::cout << " + " << costos[i]; }
+      total += costos[i];
+    }
+
+    std::cout << " = " << total << '\n' << std::endl;
+
 
     char ans;
     std::cout << "¿Ver grafo? [Y/N]: ";
@@ -80,35 +96,3 @@ int main(int argc, char const *argv[])
 
     return 0;
 }
-
-
-
-
-   //  PROCEDURE Busca(VAR g:GRAFO_PONDERADO; vertice:CARDINAL; VAR yaesta:PRESENCIA):CARDINAL;
-   //      VAR mejor_vertice,i,min:CARDINAL;
-   //      BEGIN
-   //          mejor_vertice:=1; min:=MAX(CARDINAL); FOR i:=1 TO n DO
-   //              IF (i<>vertice)AND(NOT(yaesta[i]))AND(g[vertice,i]<min) THEN min:=g[vertice,i]; mejor_vertice:=i;
-   //              END
-   //          END;
-   //      RETURN mejor_vertice;
-   // END Busca;
-
-   //
-   //  PROCEDURE Viajante1(VAR g:GRAFO_PONDERADO; VAR sol:GRAFO);
-   //  // (* supone que el recorrido comienza en el vertice 1 *)
-   //    VAR yaesta:PRESENCIA; i,verticeencurso,v_anterior:CARDINAL;
-   //
-   //    BEGIN
-   //        FOR i:=1 TO n DO
-   //            yaesta[i]:=FALSE END;
-   //            verticeencurso:=1;
-   //        FOR i:=1 TO n DO
-   //            v_anterior:=verticeencurso;
-   //            yaesta[v_anterior]:=TRUE;
-   //            verticeencurso:=Busca(g,verticeencurso,yaesta);
-   //            sol[v_anterior,verticeencurso]:=TRUE;
-   //        END;
-   // END Viajante1;
-   //
-   //
