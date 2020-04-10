@@ -31,7 +31,7 @@ public:
     std::vector< Edge<V, E> * > getEdges();
 
     // Regresará el arista con menor coste
-    Edge<V, E> * minEdge(std::vector< Vertex<std::string, int> * >& yaesta);
+    Edge<V, E> * minEdge(std::vector< Vertex<std::string, int> * > &yaesta, int num_nodes);
 
     void addEdge(Edge<V, E> *);
 
@@ -72,28 +72,43 @@ void Vertex<V, E>::setInfo(const V & value)
 
 
 template <class V, class E>
-Edge<V, E> * Vertex<V, E>::minEdge(std::vector< Vertex<std::string, int> * >& yaesta)
+std::vector< Edge<V, E> * > Vertex<V, E>::getEdges()
+{
+  return edges;
+}
+
+
+template <class V, class E>
+Edge<V, E> * Vertex<V, E>::minEdge(std::vector< Vertex<std::string, int> * > &yaesta, int num_nodes)
 {
     Edge<V, E>* min;
     int i;
     for (i = 0; i < edges.size(); ++i)
     {
+        // std::cout << "Finding first edge" << std::endl;
         if (!(std::find(yaesta.begin(), yaesta.end(), edges[i]->getTarget()) != yaesta.end()))
         {
           min = edges[i];
           break;
+        } else if ((edges[i]->getTarget() == yaesta[0]) && (yaesta.size() == num_nodes))
+        {
+          min = edges[i];
         }
     }
 
-
-    // std::cout << "\n\n (PRUEBA: min[0] = " << min->getInfo() << ")\n" << std::endl;
+    // std::cout << "\n\n (PRUEBA: min[i] = " << min->getInfo() << ")\n" << std::endl;
 
     for ( ; i < edges.size(); ++i)
     {
+        // std::cout << "Entering 2nd loop" << std::endl;
         // std::cout << "\n\n (PRUEBA: vertex.edges[i].getInfo() = " << edges[i]->getInfo() << ")\n" << std::endl;
-        if ((!(std::find(yaesta.begin(), yaesta.end(), edges[i]) != yaesta.end())) && (edges[i]->getInfo() < min->getInfo()))
+        if ((!(std::find(yaesta.begin(), yaesta.end(), edges[i]->getTarget()) != yaesta.end())) && (edges[i]->getInfo() < min->getInfo()))
         {
-          // std::cout << "\n\n (PRUEBA IN: vertex.edges[i].getInfo() = " << edges[i]->getInfo() << ")\n" << std::endl;
+            // std::cout << "NEXT" << std::endl;
+            min = edges[i];
+        } else if ((edges[i]->getTarget() == yaesta[0]) && (yaesta.size() == num_nodes))
+        {
+          // std::cout << "CERRANDO LOOP" << std::endl;
           min = edges[i];
         }
     }
