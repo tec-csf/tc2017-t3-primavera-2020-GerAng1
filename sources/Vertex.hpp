@@ -30,7 +30,7 @@ public:
 
     std::vector< Edge<V, E> * > getEdges();
 
-    // Regresará el arista con menor coste
+    // AGREGADO: Regresará el arista con menor coste
     Edge<V, E> * minEdge(std::vector< Vertex<std::string, int> * > &yaesta, int num_nodes);
 
     void addEdge(Edge<V, E> *);
@@ -39,6 +39,7 @@ public:
 
     bool operator != (Vertex<V, E> &) const;
 
+    // MODIFICADO: CAMBIÉ LA SALIDA A LA TERMINAL
     template <class Vn, class En>
     friend std::ostream & operator <<(std::ostream & , const Vertex<Vn, En> &);
 };

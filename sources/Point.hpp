@@ -40,8 +40,6 @@ namespace gal
             /* Sobrecarga el operador para imprimir coordenads xy */
             friend std::ostream &operator <<(std::ostream &, const Point &);
 
-
-            // friend bool operator< (const Point &left, const Point &right);
     };
 
 
@@ -75,13 +73,6 @@ namespace gal
 
         return output;
     }
-
-
-    // bool operator< (const Point &left, const Point &right)
-    // {
-    //     return (left.x < right.x) || (left.y != right.y);
-    // }
-
 
 }
 #endif /* Point_hpp */

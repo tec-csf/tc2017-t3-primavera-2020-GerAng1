@@ -26,13 +26,18 @@ public:
     Graph(std::string _name) : name(_name) { }
     ~Graph();
 
+    // AGREGADO: Regresa nodos que tiene ese Vertex
     std::vector< Vertex<V, E> * > getNodes();
 
     void addVertex(Vertex<V, E> * vertex);
+    // MODIFICADO: Genera una arista en ambos sentidos
     void addEdge(Vertex<V, E> * source, Vertex<V, E> * target, const E & info);
+
+    // MODIFICADO: Quita las dos aristas generadas
     void removeEdge(Vertex<V, E> * source, Vertex<V, E> * target, const E & info);
     bool isComplete();
 
+    // MODIFICADO: CAMBIÉ LA SALIDA A LA TERMINAL
     template <class Vn, class En>
     friend std::ostream & operator<<(std::ostream & os, const Graph<Vn, En> & graph);
 };
