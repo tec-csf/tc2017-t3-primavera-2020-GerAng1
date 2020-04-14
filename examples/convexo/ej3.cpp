@@ -120,8 +120,7 @@ void print_hull(std::vector<gal::Point> &points)
     find_hull(btoa, convex_points[1], convex_points[0], convex_points);
 
     std::cout << "Los puntos que conforman el cerco convexo son:" << std::endl;
-
-    std::sort(convex_points.begin(), convex_points.end(), asc_x);
+    sort(convex_points.begin(), convex_points.end(), asc_x);
 
     while (!convex_points.empty())
     {
@@ -146,6 +145,7 @@ int main(int argc, char const *argv[])
     p.set_xy(-1, -3); points.push_back(p);
 
     std::cout << "En este plano hay " << points.size() << " puntos." << std::endl;
+    sort(points.begin(), points.end(), asc_x);
 
     for (auto &point : points)
     {
