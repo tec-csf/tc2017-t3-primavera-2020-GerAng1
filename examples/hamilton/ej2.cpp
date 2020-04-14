@@ -5,16 +5,20 @@
 #include "../../sources/Graph.hpp"
 
 
+/* Itera para regresar un apuntador al Vertex con menor coste.
+ * Toma como criterios que el Vertex no esté en vector yaesta;
+ * y que camino tiene el valor más bajo.*/
 template <class V, class E>
 Vertex<V, E> * busca(const int &num_nodes, Vertex<V, E> * &v_curso, std::vector< Vertex<V, E> * >& yaesta, std::vector<int>& costos, int j)
 {
     if (j < num_nodes)
     {
-      auto mejor_edge = v_curso->minEdge(yaesta, num_nodes);
-      costos.push_back(mejor_edge->getInfo());
-      auto mejor_vertice = mejor_edge->getTarget();
-      yaesta.push_back(mejor_vertice);
-      return mejor_vertice;
+        auto mejor_edge = v_curso->minEdge(yaesta, num_nodes);
+        costos.push_back(mejor_edge->getInfo());
+        auto mejor_vertice = mejor_edge->getTarget();
+        yaesta.push_back(mejor_vertice);
+
+        return mejor_vertice;
     }
 }
 
@@ -22,7 +26,7 @@ int main(int argc, char const *argv[])
 {
     std::cout << "\n\n\t\t-----INICIO PROGRAMA CICLO HAMILTONIANO-----\n\n" << std::endl;
 
-    Graph<std::string, int> mapa("Ejemplo 1");
+    Graph<std::string, int> mapa("Ejemplo 2");
 
     /* Crear vértices */
     Vertex<std::string, int> * V0 = new Vertex<std::string, int>("V0");
@@ -65,14 +69,14 @@ int main(int argc, char const *argv[])
 
     for (int j = 0; j <= nodes.size(); ++j)
     {
-      std::cout << v_curso->getInfo() << std::endl;
-      v_curso = busca(num_nodes, v_curso, yaesta, costos, j);
-      if(v_curso == nodes[0] && yaesta.size() != num_nodes + 1)
-      {
         std::cout << v_curso->getInfo() << std::endl;
-        std::cout << "No se cumplió un circuito Hamiltoniano." << std::endl;
-        break;
-      }
+        v_curso = busca(num_nodes, v_curso, yaesta, costos, j);
+        if(v_curso == nodes[0] && yaesta.size() != num_nodes + 1)
+        {
+            std::cout << v_curso->getInfo() << std::endl;
+            std::cout << "No se cumplió un circuito Hamiltoniano." << std::endl;
+            break;
+        }
     }
 
     std::cout << "Coste total: ";
@@ -80,9 +84,9 @@ int main(int argc, char const *argv[])
 
     for (int i = 0; i < costos.size(); ++i)
     {
-      if (i == 0) { std::cout << costos[i]; }
-      else { std::cout << " + " << costos[i]; }
-      total += costos[i];
+        if (i == 0) { std::cout << costos[i]; }
+        else { std::cout << " + " << costos[i]; }
+        total += costos[i];
     }
 
     std::cout << " = " << total << '\n' << std::endl;
@@ -94,7 +98,7 @@ int main(int argc, char const *argv[])
 
     if (ans == 'Y' || ans == 'y')
     {
-      std::cout << mapa << std::endl;
+        std::cout << mapa << std::endl;
     }
 
     std::cout << "\n\n\t\t----PROGRAMA CICLO HAMILTONIANO FINALIZADO----\n" << std::endl;
