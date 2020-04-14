@@ -15,11 +15,15 @@ script:
   - g++ examples/hamilton/ej1.cpp -std=c++17 -o h1
   - g++ examples/hamilton/ej2.cpp -std=c++17 -o h2
   - g++ examples/hamilton/ej3.cpp -std=c++17 -o h3
-  - g++ examples/convexo/main_convexo.cpp -std=c++17 -o convexo
+  - g++ examples/convexo/ej1.cpp -std=c++17 -o c1
+  - g++ examples/convexo/ej2.cpp -std=c++17 -o c2
+  - g++ examples/convexo/ej3.cpp -std=c++17 -o c3
   - clear
   - ./h1 < examples/hamilton/ans.txt
   - ./h2 < examples/hamilton/ans.txt
   - ./h3 < examples/hamilton/ans.txt
-  - ./convexo
+  - ./c1
+  - ./c2
+  - ./c3
 
   # - ./t3 < examples/hamilton/ans.txt
