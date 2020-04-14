@@ -48,7 +48,7 @@ Definiciones:
 
 Para este problema se requiere una técnica de *Divide y Vencerás* porque para solucionar este problema hay que ir dividiendo el área de puntos a la mitad para obtener dos nuevas áreas y así sucesivamente hasta poder crear de manera directa una figura convexa. Luego se van fusionando las soluciones parciales para llegar a la solución final.
 
-Se generó un archivo Point.hpp dentro de sources que contiene la clase que permite la creación de un "Punto" con coordenadas en los ejes "x" y "y".
+Se generó un archivo Point.hpp dentro de *sources* que contiene la clase que permite la creación de un "Punto" con coordenadas en los ejes "x" y "y".
 
 #### Paso Inicial
 ##### En el archivo de ejemplo *ej1*, se generaron 10 puntos constantes y se insertaron a un vector. (Esto permite verificar el funcionamiento correcto del programa.)
@@ -71,6 +71,8 @@ Se repetirá este paso para la otra mitad del segmento AB.
 #### Paso Final
 Una vez terminadas las recursiones en ambas mitades del segmento AB, se imprimen los puntos almacenados en el vector *convex_points*.
 
+##### Así como el alogritmo de ordenamiento *quicksort*, se espera una complejidad de O(nlog(n)), pero en un peor caso, se complica a O(n^2).
+
 
 ### PROGRAMA 2: CICLO HAMILTONIANO
 Dado un grafo g conexo y ponderado y dado uno de sus vértices v0, Se desea implementar un algoritmo que encuentre el ciclo Hamiltoniano de coste mínimo que comienza y termina en v0.
@@ -84,12 +86,14 @@ Para este problema se requiere una técnica de *Algoritmos Ávidos*.
 Se itera sobre cada vértice del grafo, iniciando por el vértice llamado "V0", se inserta a un vector *yaesta*, y llama una función que busca el arista con menor coste.
 
 
-#### Paso Intermedio (recursivo)
+#### Paso Intermedio **(recursivo)**
 El *algoritmo ávido* toma como criterios que el siguiente vértice no este en el vector *yaesta*, y que de las posibles opciones, elija el vértice cuya arista tenga el menor valor (coste).
 **En el caso del nodo V0, verifica que el tamaño del vector yaesta sea del mismo tamaño que el número de nodos en el grafo, en caso de que sea menor, no considerará V0 como un posible camino, en caso de que sea igual, sí lo considera para que se pueda cerrar el ciclo y terminar la función. (yaesta nunca será mayor al número de nodos en el grafo ya que el algoritmo termina antes de que esta condición se cumpla)**
 
 #### Paso Final
 Una vez terminado el *algoritmo ávido*, se imprimen los contenidos del vector *yaesta* utilizando el operador sobrecargado <<.
+
+##### El algoritmo tiene una complejidad de O(n^2), pero en el caso de que se fije a un solo posible vértice de inicio (como se hizo en estos ejemplos) la complejidad se reduce a una lineal, siendo éste O(|V|+|E|), donde V es el número de vértices y E es el número de aristas.
 
 
 ### 2.1 Pasos a seguir para utilizar la aplicación
@@ -120,7 +124,7 @@ Lo siguiente es compilar los códigos para generar un archivo ejecutable y final
     $ ./c2
     $ ./c3
 
-En el caso de los ejecutables h1, h2, y h3, éstos le pediran al usuario ingresar una respuesta para imprimir o no en pantalla el grafo con sus aristas, el usuario tiene la opción de insertar "Y" o "y" en caso de que si quiera verlo, o "N" o "n" en caso de que no. Por default, el sistema de Integración Continua [Travis CI] contesta con un "n".
+En el caso de los ejecutables h1, h2, y h3, éstos le pedirán al usuario ingresar una respuesta para imprimir o no en pantalla el grafo con sus aristas, el usuario tiene la opción de insertar "Y" o "y" en caso de que si quiera verlo, o "N" o "n" en caso de que no. Por default, el sistema de Integración Continua [Travis CI] contesta con un "n".
 
 
 ## 3. Referencias
